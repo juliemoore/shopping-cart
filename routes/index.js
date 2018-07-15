@@ -6,17 +6,17 @@ const Cart = require('../models/cart');
 const Product = require('../models/product');
 const Order = require('../models/order');
 
-/* GET shop page. */
-router.get('/', function(req, res, next) {
+/* GET home page. */
+router.get('/', function (req, res, next) {
     let successMsg = req.flash('success')[0];
-  Product.find(function(err, docs) {
-      let productChunks = [];
-      let chunkSize = 3;
-      for (var i = 0; i < docs.length; i += chunkSize) {
-          productChunks.push(docs.slice(i, i + chunkSize));
-      }
-      res.render('shop/index', { title: 'Shopping Cart', products: productChunks, successMsg: successMsg, noMessages: !successMsg});
-  });
+    Product.find(function (err, docs) {
+        var productChunks = [];
+        var chunkSize = 3;
+        for (var i = 0; i < docs.length; i += chunkSize) {
+            productChunks.push(docs.slice(i, i + chunkSize));
+        }
+        res.render('shop/index', {title: 'Shopping Cart', products: productChunks, successMsg: successMsg, noMessages: !successMsg});
+    });
 });
 
 router.get('/add-to-cart/:id', function(req, res, next) {

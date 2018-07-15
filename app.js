@@ -12,12 +12,13 @@ const flash = require('connect-flash');
 const validator = require('express-validator');
 const MongoStore = require('connect-mongo')(session);
 
-const routes = require('./routes/index');
-const userRoutes = require('./routes/user');
+let routes = require('./routes/index');
+let userRoutes = require('./routes/user');
 
 const app = express();
 
 mongoose.connect('mongodb://localhost:27017/shopping');﻿
+
 require('./config/passport');
 // view engine setup
 app.engine('.hbs', expressHbs({defaultLayout: 'layout', extname: '.hbs'}));
